@@ -1,0 +1,49 @@
+---
+  # tasks file for mysql
+  # http://techwatch.keeward.com/geeks-and-nerds/properly-install-mysql-on-production-server-using-ansible/
+  
+  
+  - name: Check if MySQL is already installed.
+    stat: path=/etc/init.d/mysql
+    register: mysql_installed
+
+  - name: Set MySQL root password before installing
+    debconf:
+      name: mysql-server
+      question: mysql-server/root_password
+      value: "{{'Laurent' | quote }}"
+      vtype: password 
+    when: mysql_installed.stat.exists == false
+  
+  - name: Confirm MySQL root password before installing
+    debconf:
+      name: mysql-server
+      question: mysql-server/root_password_again
+      value: "{{ 'Laurent' | quote }}"
+      vtype: password
+    when: mysql_installed.stat.exists == false
+
+  - name: Install Mysql
+    apt:
+      package: "{{ item }}"
+      state: present
+      update_cache: yes
+    when: ansible_os_family == 'Debian'
+    with_items:
+      - mysql-server
+      - mysql-client
+      - python-mysqldb
+  
+  - name: Deletes anonymous MySQL server user
+    mysql_user:
+      name: ""
+      state: absent
+      login_password: "{{ 'Laurent' }}"
+      login_user: root
+    notify: restart mysql
+
+  - name: Remove MySQL test database
+    mysql_db:
+      name: test
+      state: absent 
+  

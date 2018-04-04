@@ -1,0 +1,25 @@
+---
+# tasks file for apache2
+
+- name: Install apache2 packet
+  apt:
+    name: apache2
+    state: present
+    update_cache: yes
+
+- name: Configure vhost 
+  template:
+    src: vhost.conf
+    dest: /etc/apache2/sites-enabled/vhost.conf
+  notify: 
+    - restart apache2
+
+- name: Delete default configuration 
+  file:
+    path: /etc/apache2/sites-enabled/000-default.conf
+    state: absent
+  notify: 
+    - restart apache2
+
+
+
