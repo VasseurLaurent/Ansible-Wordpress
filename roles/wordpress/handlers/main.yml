@@ -1,0 +1,13 @@
+---
+# handlers file for wordpress
+
+- name: extract Wordpress
+  unarchive:
+    src: /tmp/wordpress.tar.gz
+    dest: /var/www
+    copy: no
+
+- name: restart apache2
+  service:
+    name: apache2
+    state: restarted

@@ -7,13 +7,6 @@
     state: present
     update_cache: yes
 
-- name: Configure vhost 
-  template:
-    src: vhost.conf
-    dest: /etc/apache2/sites-enabled/vhost.conf
-  notify: 
-    - restart apache2
-
 - name: Delete default configuration 
   file:
     path: /etc/apache2/sites-enabled/000-default.conf
