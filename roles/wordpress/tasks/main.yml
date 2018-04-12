@@ -24,25 +24,14 @@
 - name: Execute handlers
   meta: flush_handlers
 
-- name: Update default Apache site
-  lineinfile: 
+- name: Configuration Vhost
+  template: 
+    src: vhost.conf
     dest: /etc/apache2/sites-enabled/vhost.conf
-    regexp: "(.)+DocumentRoot /var/www/html"
-    line: "DocumentRoot /var/www/wordpress"
-  notify:
-    - restart apache2
 
 - name: Copy sample config file
-  copy:
-    src: wp-config-sample.php
+  template: 
+    src: wp-config.php
     dest: /var/www/wordpress/wp-config.php
+  notify: restart apache2
   
-- name: Update WordPress config file
-  lineinfile:
-    dest: /var/www/wordpress/wp-config.php
-    regexp: "{{ item.regexp }}"
-    line: "{{ item.line }}"
-  with_items:
-    - {'regexp': "define\\('DB_NAME', '(.)+'\\);", 'line': "define('DB_NAME', '{{wp_mysql_db}}');"}        
-    - {'regexp': "define\\('DB_USER', '(.)+'\\);", 'line': "define('DB_USER', '{{wp_mysql_user}}');"}        
-    - {'regexp': "define\\('DB_PASSWORD', '(.)+'\\);", 'line': "define('DB_PASSWORD', '{{wp_mysql_password}}');"}
