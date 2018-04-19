@@ -1,0 +1,3 @@
+ansible-vault encrypt_string 'this is a plaintext string' --name 'some_string'
+
+ansible-playbook --ask-vault-pass -i inventory_file some_playabook.yml

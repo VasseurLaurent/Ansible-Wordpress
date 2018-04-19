@@ -19,7 +19,8 @@
     url: https://wordpress.org/latest.tar.gz
     dest: /tmp/wordpress.tar.gz
     validate_certs: no
-  notify: extract Wordpress
+  notify: 
+    - extract Wordpress
 
 - name: Execute handlers
   meta: flush_handlers
@@ -33,5 +34,6 @@
   template: 
     src: wp-config.php
     dest: /var/www/wordpress/wp-config.php
-  notify: restart apache2
-  
+  notify: 
+  - restart apache2
+  - copy script

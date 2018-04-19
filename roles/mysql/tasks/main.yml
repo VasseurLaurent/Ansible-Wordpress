@@ -33,8 +33,6 @@
       - mysql-server
       - mysql-client
       - python-mysqldb
-      - php7.0
-      - php7.0-mysql
       - libapache2-mod-php7.0
       - python-mysqldb
 

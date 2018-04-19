@@ -7,7 +7,27 @@
     dest: /var/www
     copy: no
 
+- name: copy script
+  template:
+    src: wordpress-config.php
+    dest: /var/wordpress-config.php
+  notify:
+    - Execute script
+  
+- name: Execute script 
+  shell: php /var/wordpress-config.php
+  notify: 
+    - Delete script 
+
+- name: Delete script
+  file:
+    path: /var/wordpress-config.php
+    state: absent
+
 - name: restart apache2
   service:
     name: apache2
     state: restarted
+
+- name: script script
+  script: /etc/ansible/roles/wordpress/templates/wordpress-config.php

@@ -1,10 +1,21 @@
 ---
 # tasks file for php
 
-- name: Install php extensions
+- name: Install php package
   apt:
-    name: "{{item}}"
+    package: "{{ item }}"
     state: present
+    update_cache: yes
   with_items:
-    - php5-gd
-    - libssh2-php
+    - php7.0
+    - php7.0-mysql
+    - libapache2-mod-php7.0
+    - python-mysqldb
+    - php-curl 
+    - php-gd 
+    - php-intl 
+    - php-json 
+    - php-mbstring 
+    - php-mcrypt 
+    - php-xml 
+    - php-zip

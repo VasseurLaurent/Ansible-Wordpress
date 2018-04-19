@@ -3,4 +3,5 @@
   roles:
     - apache2
     - mysql
+    - php
     - wordpress
