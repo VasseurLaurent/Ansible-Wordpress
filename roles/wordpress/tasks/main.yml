@@ -37,3 +37,11 @@
   notify: 
   - restart apache2
   - copy script
+
+- name: Debug 
+  debug:
+    msg: "{{password}}"
+
+- name: Debug 2 
+  debug:
+    msg: "{{vault_test}}"

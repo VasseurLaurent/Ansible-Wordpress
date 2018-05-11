@@ -28,6 +28,3 @@
   service:
     name: apache2
     state: restarted
-
-- name: script script
-  script: /etc/ansible/roles/wordpress/templates/wordpress-config.php
