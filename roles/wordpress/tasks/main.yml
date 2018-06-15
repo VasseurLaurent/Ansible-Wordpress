@@ -27,8 +27,8 @@
 
 - name: Configuration Vhost
   template: 
-    src: vhost.conf
-    dest: /etc/apache2/sites-enabled/vhost.conf
+    src: vhost_ssl.conf
+    dest: /etc/apache2/sites-enabled/vhost_ssl.conf
 
 - name: Copy sample config file
   template: 
@@ -37,11 +37,3 @@
   notify: 
   - restart apache2
   - copy script
-
-- name: Debug 
-  debug:
-    msg: "{{password}}"
-
-- name: Debug 2 
-  debug:
-    msg: "{{vault_test}}"

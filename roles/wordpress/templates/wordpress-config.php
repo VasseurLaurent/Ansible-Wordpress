@@ -11,7 +11,7 @@ $params = [
 ];
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => "http://{{ ansible_eth0.ipv4.address }}/wp-admin/install.php?step=2",
+  CURLOPT_URL => "https://{{ apache2_ssl_domain }}/wp-admin/install.php?step=2",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
   CURLOPT_MAXREDIRS => 10,

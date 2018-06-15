@@ -5,3 +5,15 @@
   service:
     name: apache2
     state: restarted
+
+- name: stop apache2
+  service:
+    name: apache2
+    state: stopped
+
+- name: request ssl
+  shell: certbot certonly --standalone --preferred-challenges http -d {{apache2_ssl_domain}} --register-unsafely-without-email --agree-tos
+
+- name: activate ssl
+  shell: a2enmod ssl
+

@@ -26,7 +26,7 @@ define('DB_NAME', '{{wp_mysql_db}}');
 define('DB_USER', '{{wp_mysql_user}}');
 
 /** MySQL database password */
-define('DB_PASSWORD', 'Laurent');
+define('DB_PASSWORD', '{{wp_mysql_password}}');
 
 /** MySQL hostname */
 define('DB_HOST', 'localhost');
@@ -36,6 +36,10 @@ define('DB_CHARSET', 'utf8');
 
 /** The Database Collate type. Don't change this if in doubt. */
 define('DB_COLLATE', '');
+
+define('WP_HOME','https://{{ apache2_ssl_domain }}');
+
+define('WP_SITEURL','https://{{ apache2_ssl_domain }}');
 
 /**#@+
  * Authentication Unique Keys and Salts.

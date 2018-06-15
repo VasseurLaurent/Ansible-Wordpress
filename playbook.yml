@@ -1,5 +1,8 @@
 ---
-- hosts : webserver
+- hosts : wordpresshost
+  remote_user: admin
+  become : yes
+  become_user: root
   roles:
     - apache2
     - mysql

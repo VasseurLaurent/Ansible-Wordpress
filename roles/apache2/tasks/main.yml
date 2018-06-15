@@ -14,5 +14,18 @@
   notify: 
     - restart apache2
 
+- name: force apache2 restart
+  meta: flush_handlers
 
+- name : install certbot
+  apt: 
+    name: python-certbot-apache
+    state: present
+  notify:
+    - stop apache2
+    - request ssl
+    - activate ssl
+    - restart apache2
 
+- name: Force handlers
+  meta: flush_handlers

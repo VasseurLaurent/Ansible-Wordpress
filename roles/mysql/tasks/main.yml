@@ -11,7 +11,7 @@
     debconf:
       name: mysql-server
       question: mysql-server/root_password
-      value: "{{'Laurent' | quote }}"
+      value: "{{ wp_mysql_password }}"
       vtype: password 
     when: mysql_installed.stat.exists == false
   
@@ -19,7 +19,7 @@
     debconf:
       name: mysql-server
       question: mysql-server/root_password_again
-      value: "{{ 'Laurent' | quote }}"
+      value: "{{ wp_mysql_password }}"
       vtype: password
     when: mysql_installed.stat.exists == false
 
@@ -41,7 +41,7 @@
     mysql_user:
       name: ""
       state: absent
-      login_password: "{{ 'Laurent' }}"
+      login_password: "{{ wp_mysql_password }}"
       login_user: root
     notify: restart mysql
 
