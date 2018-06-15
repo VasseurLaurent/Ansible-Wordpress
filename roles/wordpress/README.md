@@ -1,31 +1,70 @@
-Role Name
+Wordpress
 =========
 
-A brief description of the role goes here.
+This role automatically installs Wordpress application : 
+<ul>
+    <li>Create MySQL database / MySQL user</li>
+    <li>Download Wordpress sources</li>
+    <li>Configure Apache Vhost (HTTPS)</li>
+    <li>Send a POST request to create Wordpress administrator account </li>
+    <li> Restart apache2 services </li>
+</ul>
+
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+This role needs all roles created in this repository : 
+
+- apache2
+- mysql
+- php
+
+This role also needs http/https connection to download Wordpress sources.
+
+
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+Variable | Mandatory | Default | Description
+--- | --- | --- | ---
+wp_mysql_db | YES | X | Mysql Wordpress Database
+wp_mysql_user | YES | X | Mysql user for Wordpress
+apache2_ssl_domain | YES | X | Domain name
+apache2_port | NO | 443 | apache2 port
+apache2_admin | NO | webmaster@localhost | admin apache2
+apache2_folder | NO | /var/www/wordpress | Wordpress folder
+apache2_ssl_file | YES | X | SSL certificate
+apache2_ssl_key | YES | X | SSL key
+wp_title | YES | X | Wordpress site title
+wp_username | YES | X | Wordpress user
+wp_password | YES | X | Wordpress password user
+wp_email | YES | X | Wordpress user email
+
+
+
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+This role needs all roles created in this repository : 
+
+- apache2
+- mysql
+- php
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
     - hosts: servers
       roles:
-         - { role: username.rolename, x: 42 }
+         - apache2
+         - mysql
+         - php
+         - wordpress
+
+I suggest to add all variable into the host file. 
 
 License
 -------
@@ -34,5 +73,5 @@ BSD
 
 Author Information
 ------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+I am an IT engineering student, think to visit my Linkedin profile : 
+https://www.linkedin.com/in/laurent-vasseur-b87b60130/
