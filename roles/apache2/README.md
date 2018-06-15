@@ -20,9 +20,9 @@ These are requirements :
 Role Variables
 --------------
 
-Variable | Mandatory | Default
---- | --- | ---
-apache2_ssl_domain | YES | X
+Variable | Mandatory | Default | Description
+--- | --- | --- | ---
+apache2_ssl_domain | YES | X | Domain name 
 
 Dependencies
 ------------
